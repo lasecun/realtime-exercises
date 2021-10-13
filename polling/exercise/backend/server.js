@@ -21,7 +21,10 @@ app.use(bodyParser.json());
 app.use(express.static("frontend"));
 
 app.get("/poll", function (req, res) {
-  res.json({ msg: getMsgs() });
+  // this intenitonally causes failures
+  res.status(Math.random() > 0.5 ? 200 : 500).json({
+    msg: getMsgs(),
+  });
 });
 
 app.post("/poll", function (req, res) {
